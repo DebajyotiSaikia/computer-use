@@ -23,12 +23,12 @@ local web UI.
 Grab the build for your platform from the
 [latest release](https://github.com/DebajyotiSaikia/computer-use/releases/latest):
 
-| Platform               | Asset                          |
-| ---------------------- | ------------------------------ |
-| Windows (x64)          | `perseus-windows-amd64.exe`    |
-| macOS (Apple Silicon)  | `perseus-darwin-arm64`         |
-| macOS (Intel)          | `perseus-darwin-amd64`         |
-| Linux (x64)            | `perseus-linux-amd64`          |
+| Platform              | Asset                       |
+| --------------------- | --------------------------- |
+| Windows (x64)         | `perseus-windows-amd64.exe` |
+| macOS (Apple Silicon) | `perseus-darwin-arm64`      |
+| macOS (Intel)         | `perseus-darwin-amd64`      |
+| Linux (x64)           | `perseus-linux-amd64`       |
 
 **Windows** (PowerShell):
 
@@ -63,8 +63,8 @@ Starting opens the local control UI at <http://127.0.0.1:7523>.
   and overshoot; keystrokes carry natural 40–220 ms delays.
 - **Whitelist + audit** — every action clears a glob-rule whitelist and is
   written to an append-only NDJSON log before it executes.
-- **Record & replay** — capture tasks as a semantic action graph and replay them
-  with perceptual-hash state matching and drift detection.
+- **Record & replay** — capture tasks as a [semantic action graph](docs/recording.md)
+  and replay them with perceptual-hash state matching and drift detection.
 - **Multi-provider** — Anthropic, OpenAI, and GitHub Copilot, all with vision.
 - **MCP server** — expose the desktop as Model Context Protocol tools over stdio.
 - **Local web UI** — a dark control room embedded in the binary; no CDN, no
@@ -77,6 +77,7 @@ Starting opens the local control UI at <http://127.0.0.1:7523>.
 ## Documentation
 
 - [Architecture](docs/architecture.md) — subsystems, the agent loop, and the dependency graph
+- [Record & replay](docs/recording.md) — the semantic action graph, state matching, and drift detection
 - [CLI reference](docs/cli.md) — every command and flag
 - [Configuration](docs/configuration.md) — config schema and at-rest key encryption
 - [MCP server](docs/mcp.md) — expose the desktop as Model Context Protocol tools

@@ -84,6 +84,11 @@ normally-distributed inter-key delays (40–220 ms).
 
 ## Recording and replay
 
+Record-and-replay with drift detection is the core differentiator — a **semantic
+action graph**, not a coordinate macro. See **[Record & replay](recording.md)**
+for the full data model, matching thresholds, branching, parameters, and a
+worked example.
+
 - **Recorder** decorates the GUI layer; every executed action is captured as a
   semantic step (role, label, context, fallback coordinates) plus a perceptual
   hash of the screen before and after.
