@@ -1,0 +1,13 @@
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+
+# Release binaries are published via GitHub Releases, not committed to the repo
+/dist/
+perseus
+perseus.exe
+perseus-*-amd64
+perseus-*-arm64
+perseus-*-amd64.exe
