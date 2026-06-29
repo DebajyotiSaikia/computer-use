@@ -1,6 +1,6 @@
 # Architecture
 
-Perseus Pisces is a single Go binary (zero external dependencies) that drives a
+Orion is a single Go binary (zero external dependencies) that drives a
 real desktop through OS primitives, decides actions with an LLM, gates every
 action through a whitelist, and audits everything. This document maps the
 subsystems and how they fit together.

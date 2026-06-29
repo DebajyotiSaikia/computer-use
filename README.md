@@ -1,15 +1,15 @@
-# Perseus Pisces
+# Orion
 
 **Cross-platform desktop AI automation agent. Records, replays, and executes tasks like a human.**
 
-Perseus Pisces drives a real computer the way a person does: it captures the
+Orion drives a real computer the way a person does: it captures the
 screen, asks an LLM what to do next, and performs human-like mouse and keyboard
 input — all gated by an auditable whitelist engine and driven from an embedded
 local web UI.
 
 - **Website:** <https://computer.deb0.com>
 - **Download:** [latest release](https://github.com/DebajyotiSaikia/computer-use/releases/latest)
-- **Binary:** `perseus` — a single static binary with **zero external dependencies**
+- **Binary:** `orion` — a single static binary with **zero external dependencies**
 
 > This repository hosts the **documentation** and the **installers/binaries**
 > (published via [Releases](https://github.com/DebajyotiSaikia/computer-use/releases))
@@ -25,22 +25,22 @@ Grab the build for your platform from the
 
 | Platform              | Asset                       |
 | --------------------- | --------------------------- |
-| Windows (x64)         | `perseus-windows-amd64.exe` |
-| macOS (Apple Silicon) | `perseus-darwin-arm64`      |
-| macOS (Intel)         | `perseus-darwin-amd64`      |
-| Linux (x64)           | `perseus-linux-amd64`       |
+| Windows (x64)         | `orion-windows-amd64.exe` |
+| macOS (Apple Silicon) | `orion-darwin-arm64`      |
+| macOS (Intel)         | `orion-darwin-amd64`      |
+| Linux (x64)           | `orion-linux-amd64`       |
 
 **Windows** (PowerShell):
 
 ```powershell
-.\perseus-windows-amd64.exe start
+.\orion-windows-amd64.exe start
 ```
 
 **macOS / Linux:**
 
 ```sh
-chmod +x ./perseus-darwin-arm64      # or the asset you downloaded
-./perseus-darwin-arm64 start
+chmod +x ./orion-darwin-arm64      # or the asset you downloaded
+./orion-darwin-arm64 start
 ```
 
 Starting opens the local control UI at <http://127.0.0.1:7523>.
@@ -48,7 +48,7 @@ Starting opens the local control UI at <http://127.0.0.1:7523>.
 ### Platform notes
 
 - **macOS** — downloaded binaries are quarantined by Gatekeeper; clear it with
-  `xattr -d com.apple.quarantine ./perseus-darwin-arm64`. Grant the app
+  `xattr -d com.apple.quarantine ./orion-darwin-arm64`. Grant the app
   **Screen Recording** and **Accessibility** permissions (System Settings →
   Privacy & Security) so it can capture the screen and control input.
 - **Linux** — requires X11 (`libX11`, `libXtst`) at runtime; under Wayland it
@@ -89,20 +89,20 @@ Starting opens the local control UI at <http://127.0.0.1:7523>.
 
 ```sh
 # Start the agent + local web UI
-perseus start
+orion start
 
 # Authenticate a provider
-perseus auth anthropic        # prompts for an API key
-perseus auth copilot          # GitHub OAuth device flow
+orion auth anthropic        # prompts for an API key
+orion auth copilot          # GitHub OAuth device flow
 
 # Run a task headlessly
-perseus start --no-ui --prompt "Open Notepad and type a haiku"
+orion start --no-ui --prompt "Open Notepad and type a haiku"
 
 # Expose the desktop to any MCP client (e.g. Claude Desktop)
-perseus mcp
+orion mcp
 
 # Inspect the audit log
-perseus audit --tail
+orion audit --tail
 ```
 
 See the [CLI reference](docs/cli.md) for all commands.
@@ -124,7 +124,7 @@ Credentials are encrypted at rest with AES-256-GCM (see
 
 ## Security
 
-Perseus controls real input and can run shell commands, so it is built
+Orion controls real input and can run shell commands, so it is built
 defensively: loopback-only server, default-deny whitelist for privileged
 actions, argv-only shell execution, redacted audit logs, and encrypted secrets.
 See [SECURITY.md](SECURITY.md) for the full policy and how to report issues.

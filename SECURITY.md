@@ -1,6 +1,6 @@
 # Security Policy
 
-Perseus Pisces controls a real mouse, keyboard, and screen and can run shell
+Orion controls a real mouse, keyboard, and screen and can run shell
 commands, so it is designed defensively. This document describes the security
 model and how to report issues.
 
@@ -72,8 +72,8 @@ appreciated.
 
 ## Hardening recommendations
 
-- Run Perseus as a non-privileged user.
+- Run Orion as a non-privileged user.
 - Keep the default whitelist timeout behaviour (`deny`).
 - Pre-authorize only the specific shell commands you need, e.g.
-  `perseus whitelist add command "git *" --effect allow`.
-- Review the audit log (`perseus audit --tail`) during unattended runs.
+  `orion whitelist add command "git *" --effect allow`.
+- Review the audit log (`orion audit --tail`) during unattended runs.

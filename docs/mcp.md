@@ -1,6 +1,6 @@
 # MCP Server
 
-Perseus Pisces can run as a [Model Context Protocol](https://modelcontextprotocol.io)
+Orion can run as a [Model Context Protocol](https://modelcontextprotocol.io)
 server, exposing its computer-use primitives as MCP **tools** over the stdio
 transport. It is JSON-RPC 2.0 implemented with the Go standard library only — no
 SDK, no dependencies. Any MCP client (Claude Desktop, IDEs, custom agents) can
@@ -12,7 +12,7 @@ Project site: <https://computer.deb0.com>
 ## Running
 
 ```sh
-perseus mcp            # serve over stdio (diagnostics go to stderr)
+orion mcp            # serve over stdio (diagnostics go to stderr)
 ```
 
 stdout carries only protocol messages; logs go to stderr.
@@ -24,8 +24,8 @@ Add to `claude_desktop_config.json`:
 ```json
 {
   "mcpServers": {
-    "perseus": {
-      "command": "perseus",
+    "orion": {
+      "command": "orion",
       "args": ["mcp"]
     }
   }
@@ -56,11 +56,11 @@ Coordinates are screen pixels with the origin at the top-left. Call
 ## Whitelist gating
 
 GUI tools (mouse, keyboard, screenshot) are allowed by default. `shell_command`
-and `open_application` default to **ask** — with no Perseus UI connected to
+and `open_application` default to **ask** — with no Orion UI connected to
 approve them, they time out and are denied. Pre-authorize what you need:
 
 ```sh
-perseus whitelist add command "git *" --effect allow
+orion whitelist add command "git *" --effect allow
 ```
 
 ## Protocol notes

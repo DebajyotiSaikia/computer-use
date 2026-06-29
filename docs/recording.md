@@ -2,7 +2,7 @@
 
 Most "computer use" tools replay automations as pixel macros: fixed coordinates
 fired blindly at the screen. They break the moment a window moves, the theme
-changes, or the resolution differs. Perseus Pisces records an automation as a
+changes, or the resolution differs. Orion records an automation as a
 **semantic action graph** instead — a structured, self-describing recording that
 matches _what the screen means_ rather than _where the pixels were_, and that
 falls back to the LLM only at genuine branch points.
@@ -174,7 +174,7 @@ contain `{placeholder}` tokens; at replay time they are substituted from
 `--param key=value` pairs (and each step records which `parameter_keys` it uses):
 
 ```bash
-perseus replay f3a1… --param filename=june-2026.csv
+orion replay f3a1… --param filename=june-2026.csv
 # Replay finished: 3 steps, drift=false, 0 warnings
 ```
 
@@ -188,7 +188,7 @@ to the UI, and the recording is saved for review. A clean run instead stamps
 thing for a week") into an explicit, surfaced signal.
 
 ```
-perseus replay f3a1…
+orion replay f3a1…
 # Replay finished: 7 steps, drift=true, 3 warnings   ← UI shows which steps drifted
 ```
 
@@ -205,6 +205,6 @@ like any other action.
 
 ## See also
 
-- [CLI reference](cli.md) — `perseus record` and `perseus replay`.
+- [CLI reference](cli.md) — `orion record` and `orion replay`.
 - [Configuration](configuration.md) — similarity/drift thresholds.
 - [Architecture](architecture.md) — how recording fits the wider system.

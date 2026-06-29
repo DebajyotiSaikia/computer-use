@@ -1,12 +1,12 @@
 # CLI Reference
 
-The `perseus` binary is the single entry point. With no arguments it defaults to
+The `orion` binary is the single entry point. With no arguments it defaults to
 `start`.
 
 Project site: <https://computer.deb0.com>
 
 ```
-perseus <command> [flags]
+orion <command> [flags]
 ```
 
 ## start
@@ -14,7 +14,7 @@ perseus <command> [flags]
 Start the agent and the local web UI.
 
 ```
-perseus start [--prompt "..." | --prompt-file path]
+orion start [--prompt "..." | --prompt-file path]
               [--provider anthropic|openai|copilot]
               [--model <id>] [--reasoning none|low|medium|high|max]
               [--context <tokens>] [--headless] [--no-ui]
@@ -38,7 +38,7 @@ perseus start [--prompt "..." | --prompt-file path]
 Start in recording mode; actions performed by a session are captured.
 
 ```
-perseus record [--name "..."] [--description "..."] [--agent-dir <path>]
+orion record [--name "..."] [--description "..."] [--agent-dir <path>]
 ```
 
 ## replay
@@ -46,7 +46,7 @@ perseus record [--name "..."] [--description "..."] [--agent-dir <path>]
 Replay a saved recording, substituting parameters.
 
 ```
-perseus replay <recording-id> [--param key=value ...] [--agent-dir <path>]
+orion replay <recording-id> [--param key=value ...] [--agent-dir <path>]
 ```
 
 ## auth
@@ -55,7 +55,7 @@ Authenticate a provider. API-key providers prompt for the key; Copilot runs the
 GitHub OAuth device flow on the terminal.
 
 ```
-perseus auth <anthropic|openai|copilot> [--agent-dir <path>]
+orion auth <anthropic|openai|copilot> [--agent-dir <path>]
 ```
 
 ## audit
@@ -63,7 +63,7 @@ perseus auth <anthropic|openai|copilot> [--agent-dir <path>]
 Query or follow the audit log.
 
 ```
-perseus audit [--session <id>] [--tail] [--format pretty|json] [--agent-dir <path>]
+orion audit [--session <id>] [--tail] [--format pretty|json] [--agent-dir <path>]
 ```
 
 | Flag        | Description                   |
@@ -77,10 +77,10 @@ perseus audit [--session <id>] [--tail] [--format pretty|json] [--agent-dir <pat
 Read or modify configuration. See [configuration.md](configuration.md).
 
 ```
-perseus config                      # print the config (secrets redacted)
-perseus config --get ui.port        # read a value by dotted key
-perseus config --set ui.port=7600   # set a value
-perseus config --edit               # open in $EDITOR
+orion config                      # print the config (secrets redacted)
+orion config --get ui.port        # read a value by dotted key
+orion config --set ui.port=7600   # set a value
+orion config --edit               # open in $EDITOR
 ```
 
 ## whitelist
@@ -88,16 +88,16 @@ perseus config --edit               # open in $EDITOR
 Manage whitelist rules.
 
 ```
-perseus whitelist list
-perseus whitelist add <command|window|url|action_type|app> <pattern> [--effect allow|deny|ask]
-perseus whitelist remove <id>
+orion whitelist list
+orion whitelist add <command|window|url|action_type|app> <pattern> [--effect allow|deny|ask]
+orion whitelist remove <id>
 ```
 
 Examples:
 
 ```sh
-perseus whitelist add command "git *" --effect allow
-perseus whitelist add action_type "shell_command" --effect deny
+orion whitelist add command "git *" --effect allow
+orion whitelist add action_type "shell_command" --effect deny
 ```
 
 ## mcp
@@ -105,11 +105,11 @@ perseus whitelist add action_type "shell_command" --effect deny
 Run as a Model Context Protocol server over stdio. See [mcp.md](mcp.md).
 
 ```
-perseus mcp [--agent-dir <path>]
+orion mcp [--agent-dir <path>]
 ```
 
 ## version
 
 ```
-perseus version
+orion version
 ```

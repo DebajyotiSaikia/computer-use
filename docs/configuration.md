@@ -9,12 +9,12 @@ Project site: <https://computer.deb0.com>
 
 | Platform | Path                                   |
 | -------- | -------------------------------------- |
-| Windows  | `C:\PerseusPisces\config\config.json`  |
-| macOS    | `~/.perseus-pisces/config/config.json` |
-| Linux    | `~/.perseus-pisces/config/config.json` |
+| Windows  | `C:\orion\config\config.json`  |
+| macOS    | `~/.orion/config/config.json` |
+| Linux    | `~/.orion/config/config.json` |
 
 Override the whole agent directory with `--agent-dir` or the
-`PERSEUS_AGENT_DIR` environment variable. The directory also holds
+`ORION_AGENT_DIR` environment variable. The directory also holds
 `sessions/`, `recordings/`, `audit/`, and `memory/`.
 
 ## At-rest encryption
@@ -28,10 +28,10 @@ random salt stored in `config/.salt`. Encrypted values are written with an
 ## Editing
 
 ```sh
-perseus config                      # print (secrets redacted)
-perseus config --get whitelist.timeout_behavior
-perseus config --set ui.port=7600
-perseus config --edit               # open in $EDITOR
+orion config                      # print (secrets redacted)
+orion config --get whitelist.timeout_behavior
+orion config --set ui.port=7600
+orion config --edit               # open in $EDITOR
 ```
 
 The web UI's **Config** view edits the same document; masked secrets are
@@ -92,7 +92,7 @@ a clean default config on load.
 
 ## Credentials
 
-Set provider credentials with `perseus auth <provider>` (recommended) or through
+Set provider credentials with `orion auth <provider>` (recommended) or through
 the UI's provider wizard. Copilot uses the GitHub OAuth device flow; the
 long-lived token is stored encrypted and the short-lived Copilot token is held
 in memory and refreshed automatically.
