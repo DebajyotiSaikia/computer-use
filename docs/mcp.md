@@ -34,28 +34,28 @@ Add to `claude_desktop_config.json`:
 
 ## Tools
 
-| Tool                  | Arguments                | Result           |
-| --------------------- | ------------------------ | ---------------- |
-| `screenshot`          | —                        | PNG image        |
-| `get_screen_size`     | —                        | `{width,height}` |
-| `get_cursor_position` | —                        | `{x,y}`          |
-| `get_active_window`   | —                        | title + bounds   |
-| `mouse_move`          | `x, y`                   | ok               |
-| `mouse_click`         | `x, y, button?`          | ok               |
-| `mouse_double_click`  | `x, y`                   | ok               |
-| `mouse_scroll`        | `x, y, delta_x, delta_y` | ok               |
-| `key_press`           | `keys: string[]`         | ok               |
-| `type_string`         | `text`                   | ok               |
-| `wait`                | `ms`                     | ok               |
-| `shell_command`       | `command`                | command output   |
-| `open_application`    | `app_name`               | ok               |
-| `read_clipboard`      | —                        | clipboard text   |
-| `list_files`          | `path`                   | directory listing|
-| `read_file`           | `path`                   | file text (capped)|
-| `list_processes`      | —                        | process table    |
-| `get_accessibility_tree` | —                     | semantic UI tree |
-| `get_input_state`     | —                        | modifiers/locks  |
-| `get_hardware`        | —                        | battery/power    |
+| Tool                     | Arguments                | Result             |
+| ------------------------ | ------------------------ | ------------------ |
+| `screenshot`             | —                        | PNG image          |
+| `get_screen_size`        | —                        | `{width,height}`   |
+| `get_cursor_position`    | —                        | `{x,y}`            |
+| `get_active_window`      | —                        | title + bounds     |
+| `mouse_move`             | `x, y`                   | ok                 |
+| `mouse_click`            | `x, y, button?`          | ok                 |
+| `mouse_double_click`     | `x, y`                   | ok                 |
+| `mouse_scroll`           | `x, y, delta_x, delta_y` | ok                 |
+| `key_press`              | `keys: string[]`         | ok                 |
+| `type_string`            | `text`                   | ok                 |
+| `wait`                   | `ms`                     | ok                 |
+| `shell_command`          | `command`                | command output     |
+| `open_application`       | `app_name`               | ok                 |
+| `read_clipboard`         | —                        | clipboard text     |
+| `list_files`             | `path`                   | directory listing  |
+| `read_file`              | `path`                   | file text (capped) |
+| `list_processes`         | —                        | process table      |
+| `get_accessibility_tree` | —                        | semantic UI tree   |
+| `get_input_state`        | —                        | modifiers/locks    |
+| `get_hardware`           | —                        | battery/power      |
 
 Coordinates are screen pixels with the origin at the top-left. Call
 `screenshot` first to see the screen, then act. The read-only observation tools
@@ -66,13 +66,19 @@ that answers a question and escalate to vision only when needed.
 ## Whitelist gating
 
 GUI tools (mouse, keyboard, screenshot) and the read-only observation tools are
-allowed by default. `shell_command`
-and `open_application` default to **ask** — with no Orion UI connected to
-approve them, they time out and are denied. Pre-authorize what you need:
+allowed by default. `shell_command` and `open_application` default to **ask**.
+Since MCP has no web UI, an `ask` action raises a **native OS confirm dialog** on
+your desktop (Allow/Deny, with a timeout); the `tools/call` blocks until you
+respond. Override with flags or pre-authorize:
 
 ```sh
-orion whitelist add command "git *" --effect allow
+orion mcp --approve-all      # auto-approve (explicit deny rules still apply)
+orion mcp --unattended       # auto-deny without prompting
+orion whitelist add command "git *" --effect allow   # pre-authorize
 ```
+
+With no display available (headless), `ask` actions are denied rather than
+blocking.
 
 ## Protocol notes
 
