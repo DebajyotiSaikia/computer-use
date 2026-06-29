@@ -49,13 +49,24 @@ Add to `claude_desktop_config.json`:
 | `wait`                | `ms`                     | ok               |
 | `shell_command`       | `command`                | command output   |
 | `open_application`    | `app_name`               | ok               |
+| `read_clipboard`      | —                        | clipboard text   |
+| `list_files`          | `path`                   | directory listing|
+| `read_file`           | `path`                   | file text (capped)|
+| `list_processes`      | —                        | process table    |
+| `get_accessibility_tree` | —                     | semantic UI tree |
+| `get_input_state`     | —                        | modifiers/locks  |
+| `get_hardware`        | —                        | battery/power    |
 
 Coordinates are screen pixels with the origin at the top-left. Call
-`screenshot` first to see the screen, then act.
+`screenshot` first to see the screen, then act. The read-only observation tools
+(clipboard, files, processes, accessibility tree, input state, hardware) are
+part of the progressive-disclosure world model: prefer the lowest-cost source
+that answers a question and escalate to vision only when needed.
 
 ## Whitelist gating
 
-GUI tools (mouse, keyboard, screenshot) are allowed by default. `shell_command`
+GUI tools (mouse, keyboard, screenshot) and the read-only observation tools are
+allowed by default. `shell_command`
 and `open_application` default to **ask** — with no Orion UI connected to
 approve them, they time out and are denied. Pre-authorize what you need:
 

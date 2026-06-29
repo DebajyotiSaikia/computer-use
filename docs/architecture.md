@@ -97,6 +97,29 @@ worked example.
   back to the LLM, constrained to the recording's scope. Drift across a run is
   detected and surfaced to the UI.
 
+## World model (observation sources)
+
+Orion uses **progressive disclosure**: cheap context is always present, richer
+sources are pulled only on demand. Every turn includes the screenshot, a pruned
+accessibility tree, and lightweight metadata (active window, cursor, modifiers).
+Deeper sources are read-only tools the model invokes when the view is ambiguous.
+
+Sources are grouped by capability and tagged with cost so the agent prefers the
+cheapest source that answers a question and escalates only when needed:
+
+| Capability    | Sources                                                   | Cost      |
+| ------------- | --------------------------------------------------------- | --------- |
+| Vision        | `screenshot`, `ocr`                                       | medium    |
+| Accessibility | `get_accessibility_tree` (pruned, actionable)             | low       |
+| OS            | `get_window_info`, `get_input_state`, `list_processes`, `get_hardware` | very-low–medium |
+| Clipboard     | `read_clipboard`                                          | very-low  |
+| Filesystem    | `list_files`, `read_file`                                 | low       |
+| Browser/Net   | `get_dom`, `get_network_requests`, `get_console_logs`     | unavailable (stubs) |
+
+The catalog (`agent/sources.go`) carries availability so unavailable bridges
+fail clearly. Structured accessibility is Windows-only today; macOS/Linux return
+the window node. All sources are allowed by default and audited.
+
 ## Providers
 
 A provider implements authentication, model listing, and completion. Requests
